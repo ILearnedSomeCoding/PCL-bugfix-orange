@@ -1,6 +1,6 @@
-# Plain Craft Launcher (PCL) Orange 修改版
+# PCL (modifiyed by orange)
 
-本项目是第三方基于 [Plain Craft Launcher（PCL）](https://github.com/Meloong-Git/PCL) 独立制作的修改版，**并非 PCL 官方版本，也未获得官方背书**。“Orange”来自维护者的橙子头像，不代表启动器界面改为橙色。
+本项目是第三方基于 [Plain Craft Launcher（PCL）](https://github.com/Meloong-Git/PCL) 独立制作的修改版，**并非 PCL 官方版本，也未获得官方背书**。名称中的 “orange” 来自维护者的橙子头像，不代表启动器界面改为橙色。
 
 原项目作者：**龙腾猫跃**。如需支持原项目，请访问[作者的赞助页面](https://meloong.com/afd/a/LTCat)。本修改版的源代码公开于 [ILearnedSomeCoding/PCL-bugfix-orange](https://github.com/ILearnedSomeCoding/PCL-bugfix-orange)。仓库保留了上游的 [LICENCE](LICENCE) 文件；使用和分发前请阅读其中的限制。
 

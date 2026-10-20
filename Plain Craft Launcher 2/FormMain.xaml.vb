@@ -438,7 +438,7 @@ Public Class FormMain
             Telemetry("启动")
             '开源版本提示
             If VersionBranchMain = "OpenSource" Then
-                MyMsgBox($"这是第三方独立制作的 PCL Orange 修改版，并非官方版本。{vbCrLf}该版本中无法使用以下特性：{vbCrLf}- CurseForge API 调用：需要自行申请 API Key，然后添加到 ModSecret.vb 的开头{vbCrLf}- 正版登录：需要自行向微软申请 Client ID，然后添加到 ModSecret.vb 的开头{vbCrLf}- 更新与联网通知：避免滥用隐患{vbCrLf}- 主题切换：本修改版固定使用蓝色主题{vbCrLf}- 百宝箱：开发早期往里面塞了些开发工具，整理起来太麻烦了……", "第三方修改版说明")
+                MyMsgBox($"这是第三方独立制作的 PCL (modifiyed by orange)，并非官方版本。{vbCrLf}该版本中无法使用以下特性：{vbCrLf}- CurseForge API 调用：需要自行申请 API Key，然后添加到 ModSecret.vb 的开头{vbCrLf}- 正版登录：需要自行向微软申请 Client ID，然后添加到 ModSecret.vb 的开头{vbCrLf}- 更新与联网通知：避免滥用隐患{vbCrLf}- 主题切换：本修改版固定使用蓝色主题{vbCrLf}- 百宝箱：开发早期往里面塞了些开发工具，整理起来太麻烦了……", "第三方修改版说明")
             End If
         End Sub, "初始化", ThreadPriority.Lowest)
 
@@ -450,7 +450,7 @@ Public Class FormMain
         If BuildType = BuildTypes.Snapshot Then
             Select Case Settings.Get(Of Integer)("SystemCount")
                 Case 1
-                    MyMsgBox("欢迎使用 PCL Orange 修改版！" & vbCrLf &
+                    MyMsgBox("欢迎使用 PCL (modifiyed by orange)！" & vbCrLf &
                              "这是第三方基于 PCL 独立制作的版本，并非 PCL 官方发布。", "第三方修改版说明")
             End Select
         End If

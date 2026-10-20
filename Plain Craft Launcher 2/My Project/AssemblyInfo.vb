@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 '查看程序集特性的值
 
-<Assembly: AssemblyTitle("Plain Craft Launcher (PCL) Orange 修改版")>
+<Assembly: AssemblyTitle("PCL (modifiyed by orange)")>
 <Assembly: AssemblyDescription("基于 Plain Craft Launcher 独立制作的第三方修改版")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("Plain Craft Launcher (PCL) Orange 修改版")>
+<Assembly: AssemblyProduct("PCL (modifiyed by orange)")>
 <Assembly: AssemblyCopyright("Copyright © 成都瓜皮龙科技有限公司")>
 <Assembly: AssemblyConfiguration("PCL2 Config Mark")>
 <Assembly: ComVisible(False)>
