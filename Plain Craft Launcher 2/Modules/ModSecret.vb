@@ -148,12 +148,6 @@ Friend Module ModSecret
         Hint("该版本中不包含更新功能……")
     End Sub
 
-    Friend IsUpdateWaitingRestart As Boolean = False
-    Public Sub UpdateRestart(TriggerRestartAndByEnd As Boolean)
-    End Sub
-    Public Sub UpdateReplace(ProcessId As Integer, OldFileName As String, NewFileName As String, TriggerRestart As Boolean)
-    End Sub
-
     ''' <summary>
     ''' 确保 PathTemp/Latest.exe 是最新正式版的 PCL，它会被用于整合包打包。
     ''' 如果不是，则下载一个。
