@@ -117,6 +117,7 @@
                         <RowDefinition Height="5" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="启动器公告" Margin="0,0,25,0" />
                     <local:MyComboBox x:Name="ComboSystemActivity" local:SettingService.Key="SystemSystemActivity" Grid.Column="1">
@@ -141,9 +142,10 @@
                             <ColumnDefinition Width="Auto" SharedSizeGroup="Button" />
                         </Grid.ColumnDefinitions>
                         <local:MyButton Grid.Column="0" x:Name="BtnSystemUpdate" MinWidth="140" Text="检查更新" Padding="13,0" Margin="0,0,20,0" />
-                        <local:MyButton Grid.Column="1" x:Name="BtnSystemSettingExp" MinWidth="140" Text="导出设置" Padding="13,0" Margin="0,0,20,0" />
-                        <local:MyButton Grid.Column="2" x:Name="BtnSystemSettingImp" MinWidth="140" Text="导入设置" Padding="13,0" Margin="0,0,20,0" />
+                        <local:MyButton Grid.Column="1" x:Name="BtnSystemSettingExp" MinWidth="140" Text="导出设置" Padding="13,0" Margin="0,0,20,0" ToolTip="备份下载、启动与界面偏好；不包含账号、密码和游戏路径" />
+                        <local:MyButton Grid.Column="2" x:Name="BtnSystemSettingImp" MinWidth="140" Text="导入设置" Padding="13,0" Margin="0,0,20,0" ToolTip="从本 fork 导出的 JSON 文件恢复偏好" />
                     </Grid>
+                    <local:MyButton Grid.Row="6" Grid.ColumnSpan="2" x:Name="BtnSystemOpenLog" Height="35" MinWidth="140" HorizontalAlignment="Left" Text="打开日志文件夹" Padding="13,0" Margin="0,8,0,0" ToolTip="打开 PCL 日志所在的文件夹，方便排查问题" />
                 </Grid>
             </local:MyCard>
 

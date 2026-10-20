@@ -96,11 +96,116 @@ Public Class PageSetupSystem
 
 #Region "导出 / 导入设置"
 
+    '只备份可移植的普通偏好。账号、令牌、游戏路径、启动命令和付费主题状态均不应进入明文文件。
+    Private Shared ReadOnly PortableSettingKeys As String() = {
+        "SystemSystemActivity", "SystemSystemTelemetry",
+        "ToolHelpChinese", "ToolDownloadThread", "ToolDownloadSpeed", "ToolDownloadSource",
+        "ToolDownloadVersion", "ToolDownloadTranslateV2", "ToolDownloadMod", "ToolModLocalNameStyle",
+        "ToolUpdateRelease", "ToolUpdateSnapshot",
+        "LaunchArgumentIndieV2", "LaunchArgumentVisible", "LaunchArgumentPriority",
+        "LaunchArgumentWindowWidth", "LaunchArgumentWindowHeight", "LaunchArgumentWindowType",
+        "LaunchArgumentRam", "LaunchAdvanceGraphicCard", "LaunchAdvanceGC", "LaunchRamType", "LaunchRamCustom",
+        "UiLauncherTransparent", "UiLauncherLogo", "UiLauncherEmail", "UiBackgroundColorful",
+        "UiBackgroundOpacity", "UiBackgroundBlur", "UiBackgroundSuit", "UiMusicVolume",
+        "UiMusicStop", "UiMusicStart", "UiMusicRandom", "UiMusicAuto"
+    }
+
+    Private Shared Function IsValidPortableValue(Key As String, Value As JToken) As Boolean
+        If Settings.Entries(Key).Type Is GetType(Boolean) Then Return Value.Type = JTokenType.Boolean
+        If Value.Type <> JTokenType.Integer Then Return False
+        Dim Number = Value.Value(Of Integer)()
+        Select Case Key
+            Case "SystemSystemActivity", "ToolDownloadSource", "ToolDownloadVersion", "ToolDownloadMod", "LaunchArgumentPriority", "LaunchRamType"
+                Return Number >= 0 AndAlso Number <= 2
+            Case "ToolDownloadTranslateV2", "LaunchArgumentIndieV2", "LaunchArgumentWindowType", "LaunchAdvanceGC"
+                Return Number >= 0 AndAlso Number <= 4
+            Case "ToolModLocalNameStyle"
+                Return Number >= 0 AndAlso Number <= 1
+            Case "ToolDownloadThread"
+                Return Number >= 0 AndAlso Number <= 255
+            Case "ToolDownloadSpeed"
+                Return Number >= 0 AndAlso Number <= 42
+            Case "LaunchArgumentVisible"
+                Return Number = 0 OrElse (Number >= 2 AndAlso Number <= 5)
+            Case "LaunchArgumentWindowWidth", "LaunchArgumentWindowHeight"
+                Return Number >= 1 AndAlso Number <= 99999
+            Case "LaunchRamCustom"
+                Return Number >= 0 AndAlso Number <= 49
+            Case "UiLauncherTransparent"
+                Return Number >= 0 AndAlso Number <= 600
+            Case "UiBackgroundOpacity", "UiMusicVolume"
+                Return Number >= 0 AndAlso Number <= 1000
+            Case "UiBackgroundBlur"
+                Return Number >= 0 AndAlso Number <= 40
+            Case "UiBackgroundSuit"
+                Return Number >= 0 AndAlso Number <= 12
+            Case Else
+                Return False
+        End Select
+    End Function
+
     Private Sub BtnSystemSettingExp_Click(sender As Object, e As MouseButtonEventArgs) Handles BtnSystemSettingExp.Click
-        Hint("该功能尚在开发中！")
+        Dim SavePath = Dialogs.SaveFile("导出 PCL 设置", "PCL-settings.json", filter:={ ("json", "JSON 设置备份") })
+        If String.IsNullOrEmpty(SavePath) Then Return
+        Try
+            Dim Values As New JObject
+            For Each Key In PortableSettingKeys
+                Values.Add(Key, JToken.FromObject(Settings.GetSafe(Key)))
+            Next
+            Dim Backup As New JObject From {
+                {"format", "PCL-orange-settings"},
+                {"version", 1},
+                {"settings", Values}
+            }
+            FileUtils.Write(SavePath, Backup.ToString(Formatting.Indented))
+            Hint("设置已导出（不包含账号和密码）！", HintType.Green)
+        Catch ex As Exception
+            Logger.Error(ex, "导出设置失败", LogBehavior.Alert)
+        End Try
     End Sub
     Private Sub BtnSystemSettingImp_Click(sender As Object, e As MouseButtonEventArgs) Handles BtnSystemSettingImp.Click
-        Hint("该功能尚在开发中！")
+        Dim ImportPath = Dialogs.SelectFile("导入 PCL 设置", False, filter:="JSON 设置备份|*.json").FirstOrDefault()
+        If String.IsNullOrEmpty(ImportPath) Then Return
+        Try
+            If New FileInfo(ImportPath).Length > 1024 * 1024 Then Throw New InvalidDataException("设置备份文件过大")
+            Dim Backup = JObject.Parse(FileUtils.ReadAsString(ImportPath))
+            If CStr(Backup("format")) <> "PCL-orange-settings" OrElse CInt(Backup("version")) <> 1 Then
+                Throw New InvalidDataException("不是受支持的 PCL 设置备份")
+            End If
+            Dim Values = TryCast(Backup("settings"), JObject)
+            If Values Is Nothing Then Throw New InvalidDataException("设置备份缺少 settings 对象")
+
+            '先检查整份备份，再修改任何设置，以免损坏或不兼容的文件只导入一部分。
+            Dim Pending As New Dictionary(Of String, Object)
+            For Each PropertyItem As JProperty In Values.Properties()
+                If Not PortableSettingKeys.Contains(PropertyItem.Name) Then Continue For
+                If Not IsValidPortableValue(PropertyItem.Name, PropertyItem.Value) Then
+                    Throw New InvalidDataException("设置值无效：" & PropertyItem.Name)
+                End If
+                Pending.Add(PropertyItem.Name, PropertyItem.Value.ToObject(Settings.Entries(PropertyItem.Name).Type))
+            Next
+            If Pending.Count = 0 Then Throw New InvalidDataException("设置备份中没有可导入的偏好")
+            If MyMsgBox($"将导入 {Pending.Count} 项偏好，并覆盖对应的当前设置。账号与密码不会导入。", "导入设置", "导入", "取消") <> 1 Then Return
+
+            AniControlEnabled += 1
+            Try
+                For Each Entry In Pending
+                    Settings.SetSafe(Entry.Key, Entry.Value)
+                Next
+                Reload()
+                FrmSetupLaunch?.Refresh()
+                FrmSetupUI?.Refresh()
+            Finally
+                AniControlEnabled -= 1
+            End Try
+            Hint("设置已导入，部分更改可能需要重启启动器生效！", HintType.Green)
+        Catch ex As Exception
+            Logger.Error(ex, "导入设置失败", LogBehavior.Alert)
+        End Try
+    End Sub
+
+    Private Sub BtnSystemOpenLog_Click(sender As Object, e As MouseButtonEventArgs) Handles BtnSystemOpenLog.Click
+        OpenExplorer(Paths.Base & "PCL\")
     End Sub
 
 #End Region
