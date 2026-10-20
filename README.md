@@ -1,4 +1,12 @@
-# Plain Craft Launcher
+# Plain Craft Launcher (PCL) Orange 修改版
+
+本项目是第三方基于 [Plain Craft Launcher（PCL）](https://github.com/Meloong-Git/PCL) 独立制作的修改版，**并非 PCL 官方版本，也未获得官方背书**。“Orange”来自维护者的橙子头像，不代表启动器界面改为橙色。
+
+原项目作者：**龙腾猫跃**。如需支持原项目，请访问[作者的赞助页面](https://meloong.com/afd/a/LTCat)。本修改版的源代码公开于 [ILearnedSomeCoding/PCL-bugfix-orange](https://github.com/ILearnedSomeCoding/PCL-bugfix-orange)。仓库保留了上游的 [LICENCE](LICENCE) 文件；使用和分发前请阅读其中的限制。
+
+本分支移除了启动器自动更新入口；Minecraft 的更新提示及下载功能不受此说明影响。
+
+## 上游项目介绍
 
 [![Stars](https://img.shields.io/github/stars/Meloong-Git/PCL?style=flat&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZD0iTTggLjI1YS43NS43NSAwIDAgMSAuNjczLjQxOGwxLjg4MiAzLjgxNSA0LjIxLjYxMmEuNzUuNzUgMCAwIDEgLjQxNiAxLjI3OWwtMy4wNDYgMi45Ny43MTkgNC4xOTJhLjc1MS43NTEgMCAwIDEtMS4wODguNzkxTDggMTIuMzQ3bC0zLjc2NiAxLjk4YS43NS43NSAwIDAgMS0xLjA4OC0uNzlsLjcyLTQuMTk0TC44MTggNi4zNzRhLjc1Ljc1IDAgMCAxIC40MTYtMS4yOGw0LjIxLS42MTFMNy4zMjcuNjY4QS43NS43NSAwIDAgMSA4IC4yNVoiIGZpbGw9IiNlYWM1NGYiLz48L3N2Zz4=&logoSize=auto&label=Stars&labelColor=444444&color=eac54f)](https://github.com/Meloong-Git/PCL/)
 [![Issues](https://img.shields.io/github/issues/Meloong-Git/PCL?style=flat&label=Issues&labelColor=444444&color=1F883D)](https://github.com/Meloong-Git/PCL/issues)

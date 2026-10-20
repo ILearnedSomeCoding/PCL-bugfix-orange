@@ -20,7 +20,7 @@
                     </Grid.ColumnDefinitions>
                     <local:MyListItem IsHitTestVisible="False" Title="龙腾猫跃" Margin="-5,0,15,0" Info="Plain Craft Launcher 的开发者！" Grid.Row="0" Grid.Column="1" />
                     <local:MyListItem IsHitTestVisible="False" Title="HerobrineXia" Margin="-5,0,15,0" Info="Plain Craft Launcher 的协力开发者！" Grid.Row="1" Grid.Column="1" />
-                    <local:MyListItem IsHitTestVisible="False" Title="Plain Craft Launcher 2" Margin="-5,0,15,0" Info="当前版本：%VERSION%（%VERSIONCODE%.%BRANCH%）" Grid.Row="2" Grid.Column="1" x:Name="ItemAboutPcl" />
+                    <local:MyListItem IsHitTestVisible="False" Title="PCL Orange 修改版" Margin="-5,0,15,0" Info="第三方独立修改版，非官方发布。当前版本：%VERSION%（%VERSIONCODE%.%BRANCH%）" Grid.Row="2" Grid.Column="1" x:Name="ItemAboutPcl" />
                     <Image Source="/Plain Craft Launcher 2;component/Images/Heads/LTCat.jpg" Grid.Row="0" Margin="3">
                         <Image.Clip>
                             <EllipseGeometry Center="17 17" RadiusX="17" RadiusY="17" />
@@ -763,13 +763,8 @@
                     <Grid Height="35">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="Button" />
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="Button" />
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="Button" />
                         </Grid.ColumnDefinitions>
-                        <local:MyButton x:Name="BtnDonateOutput" Grid.Column="0" MinWidth="140" Text="生成土豆码" Padding="13,0" Margin="0,0,20,0" HorizontalAlignment="Left" ColorType="Highlight" Visibility="Collapsed" />
                         <local:MyButton x:Name="BtnDonateDonate" Grid.Column="0" MinWidth="140" Text="赞助作者" Padding="13,0" Margin="0,0,20,0" HorizontalAlignment="Left" ColorType="Highlight" local:CustomEventService.EventType="打开网页" local:CustomEventService.EventData="https://meloong.com/afd/a/LTCat" />
-                        <local:MyButton x:Name="BtnDonateCopy" Grid.Column="1" MinWidth="140" Text="复制识别码" Padding="13,0" Margin="0,0,20,0" HorizontalAlignment="Left" />
-                        <local:MyButton x:Name="BtnDonateInput" Grid.Column="2" MinWidth="140" Text="输入土豆码" Padding="13,0" Margin="0,0,20,0" HorizontalAlignment="Left" />
                     </Grid>
                 </StackPanel>
             </local:MyCard>
@@ -786,7 +781,7 @@
                                         local:CustomEventService.EventType="打开网页" local:CustomEventService.EventData="https://shimo.im/docs/rGrd8pY8xWkt6ryW#anchor-RnU9" />
                         <local:MyButton Text="PCL 分发有限许可" Width="170" Padding="13,0" Margin="0,0,20,0" 
                                         local:CustomEventService.EventType="打开网页" local:CustomEventService.EventData="https://shimo.im/docs/rGrd8pY8xWkt6ryW#anchor-X0bo" />
-                        <local:MyButton Text="开源代码" Width="140" Padding="13,0" local:CustomEventService.EventType="打开网页" local:CustomEventService.EventData="https://github.com/Hex-Dragon/PCL2" />
+                        <local:MyButton Text="本版源代码" Width="140" Padding="13,0" local:CustomEventService.EventType="打开网页" local:CustomEventService.EventData="https://github.com/ILearnedSomeCoding/PCL-bugfix-orange" />
                     </StackPanel>
                 </StackPanel>
             </local:MyCard>

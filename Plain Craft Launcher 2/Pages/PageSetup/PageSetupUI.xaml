@@ -38,7 +38,7 @@
                             <local:MySlider local:SettingService.Key="UiLauncherLight" 
                                             Grid.Row="2" Grid.Column="4" x:Name="SliderLauncherLight" Visibility="Collapsed" MaxValue="40" ValueByKey="5" Margin="0,10,0,0" />
                         </Grid>
-                        <Grid x:Name="PanLauncherTheme" Height="90" Margin="0,0,0,7">
+                        <Grid x:Name="PanLauncherTheme" Height="90" Margin="0,0,0,7" Visibility="Collapsed" IsHitTestVisible="False">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Name1" />
                                 <ColumnDefinition />
@@ -92,13 +92,6 @@
                         </Grid>
                         <local:MyCheckBox local:SettingService.Key="UiLauncherLogo" Text="打开启动器时显示 PCL 图标" Margin="-1,0,0,1" Height="22" />
                     </StackPanel>
-                    <Border Background="#DDDDDDDD" Margin="-8,23,-5,28" CornerRadius="4" Name="PanLauncherHide" Visibility="Collapsed">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="如果可以小小赞助一下 PCL，就能解锁主题颜色更换功能啦……&#xa;多亏了大家的支持，PCL 才能在免费、无任何广告的情况下维持数年的更新（磕头）！" FontSize="13" Margin="0,0,0,0" />
-                            <local:MyButton Height="32" MinWidth="140" Text="支持 PCL 开发！" Padding="13,0" HorizontalAlignment="Center" Margin="0,9,0,0" ColorType="Highlight"
-                                            local:CustomEventService.EventType="打开网页" local:CustomEventService.EventData="https://meloong.com/afd/a/LTCat" />
-                        </StackPanel>
-                    </Border>
                 </Grid>
             </local:MyCard>
             <local:MyCard x:Name="CardBackground" Margin="0,0,0,15" Title="背景图片">

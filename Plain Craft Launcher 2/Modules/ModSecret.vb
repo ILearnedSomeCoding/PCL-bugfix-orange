@@ -133,13 +133,6 @@ Friend Module ModSecret
     End Sub
     Friend Sub ThemeCheckAll(EffectSetup As Boolean)
     End Sub
-    Friend Function ThemeCheckOne(Id As Integer) As Boolean
-        Return True
-    End Function
-    Friend Function ThemeUnlock(Id As Integer, Optional ShowDoubleHint As Boolean = True, Optional UnlockHint As String = Nothing) As Boolean
-        Return False
-    End Function
-
 #End Region
 
 #Region "更新"
@@ -178,11 +171,6 @@ Friend Module ModSecret
             Return DonationRank.None
         End Get
     End Property
-
-    Public Sub InputPotatoCode(IsUpdating As Boolean)
-    End Sub
-    Friend Sub GeneratePotatoCode()
-    End Sub
 
     ''' <summary>
     ''' 获取设备识别码。

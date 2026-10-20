@@ -28,15 +28,6 @@ Public Class PageSetupUI
 
         SliderLoad()
 
-        If BuildType = BuildTypes.Release Then PanLauncherHide.Visibility = Visibility.Visible
-
-        '设置解锁
-        If Not RadioLauncherTheme8.IsEnabled Then LabLauncherTheme8Copy.ToolTip = $"累积赞助达到 ¥23.33 后，在爱发电私信发送【土豆 {Identify}】以解锁。" & vbCrLf & "右键打开赞助页面，如果觉得 PCL 做得还不错就支持一下吧 =w=！"
-        RadioLauncherTheme8.ToolTip = $"累积赞助达到 ¥23.33 后，在爱发电私信发送【土豆 {Identify}】以解锁"
-        If Not RadioLauncherTheme9.IsEnabled Then LabLauncherTheme9Copy.ToolTip = "· 反馈一个 Bug，在标记为 [完成] 后回复识别码要求解锁（右键打开反馈页面）" & vbCrLf & "· 提交一个 Pull Request 或主页预设，在标记为 [完成] 后回复识别码要求解锁"
-        RadioLauncherTheme9.ToolTip = "· 反馈一个 Bug，在标记为 [完成] 后回复识别码要求解锁" & vbCrLf & "· 提交一个 Pull Request 或主页预设，在标记为 [完成] 后回复识别码要求解锁"
-        '极客蓝的处理在 ThemeCheck 中
-
     End Sub
     Public Sub Refresh()
         Try
@@ -351,19 +342,6 @@ Refresh:
     End Sub
 
     '主题
-    Private Sub LabLauncherTheme5Unlock_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs) Handles LabLauncherTheme5Unlock.MouseLeftButtonUp
-        RadioLauncherTheme5Gray.Opacity -= 0.7
-        RadioLauncherTheme5.Opacity += 0.7
-        AniStart({
-            AaOpacity(RadioLauncherTheme5Gray, 1, 1000 * AniSpeed, 500 * AniSpeed, New AniEaseInFluent),
-            AaOpacity(RadioLauncherTheme5, -1, 1000 * AniSpeed, 500 * AniSpeed, New AniEaseInFluent)
-        }, "ThemeUnlock")
-        If RadioLauncherTheme5Gray.Opacity < 0.02 Then
-            ThemeUnlock(5, UnlockHint:="隐藏主题 玄素黑 已解锁！")
-            AniStop("ThemeUnlock")
-            RadioLauncherTheme5.Checked = True
-        End If
-    End Sub
     Private Sub LabLauncherTheme11Click_MouseLeftButtonUp() Handles LabLauncherTheme11Click.MouseLeftButtonUp, RadioLauncherTheme11.MouseRightButtonUp
         If LabLauncherTheme11Click.Visibility = Visibility.Collapsed OrElse If(LabLauncherTheme11Click.ToolTip, "").ToString.Contains("点击") Then
             If MyMsgBox(

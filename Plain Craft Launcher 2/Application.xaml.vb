@@ -109,11 +109,7 @@ RetryCacheCheck:
             End If
             '基础信息
             Logger.Info($"程序版本：{VersionDisplay} ({VersionCode}{If(CommitHash = "", "", $"，#{CommitHash}")})")
-            If BuildType = BuildTypes.Snapshot Then
-                Logger.Info($"识别码：{Identify}{If(ThemeCheckOne(9), "，已解锁反馈主题", "，未解锁反馈主题")}")
-            Else
-                Logger.Info($"识别码：{Identify}")
-            End If
+            Logger.Info($"识别码：{Identify}")
             Logger.Info($"程序路径：{PathExe}")
             Logger.Info($"系统编码：{Encoding.Default.HeaderName} ({Encoding.Default.CodePage}, GBK={IsGBKEncoding})")
             Logger.Info($"管理员权限：{WindowsUtils.HasAdminRole()}")
